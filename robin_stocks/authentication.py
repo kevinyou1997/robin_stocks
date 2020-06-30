@@ -150,7 +150,7 @@ def login(username=None, password=None, expiresIn=86400, scope='internal', by_sm
         if 'mfa_required' in data:
             #mfa_token = input("Please type in the MFA code: ")
             totp = pyotp.TOTP(qr_code)
-            mfa=totp.now()
+            mfa_token=totp.now()
             payload['mfa_code'] = mfa_token
             res = helper.request_post(url, payload, jsonify_data=False)
             while (res.status_code != 200):
